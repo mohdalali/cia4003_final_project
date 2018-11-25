@@ -17,38 +17,11 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        RelativeLayout rootView=(RelativeLayout) findViewById(R.id.rootLayout);
-        Display display=getWindowManager().getDefaultDisplay();
-        Point size=new Point();
-        display.getSize(size);
-
-        FrameLayout.LayoutParams rootViewParams = (FrameLayout.LayoutParams) rootView.getLayoutParams();
-        int videoWidth=864;
-        int videoHeight=1280;
-
-        if ((float)videoWidth/(float)videoHeight<(float)size.x/(float)size.y) {
-            rootViewParams.width=size.x;
-            rootViewParams.height=videoHeight*size.x/videoWidth;
-            rootView.setX(0);
-            rootView.setY((rootViewParams.height-size.y)/2*-1);
-        } else {
-            rootViewParams.width=videoWidth*size.y/videoHeight;
-            rootViewParams.height=size.y;
-            rootView.setX((rootViewParams.width-size.x)/2*-1);
-            rootView.setY(0);
-        }
-        rootView.setLayoutParams(rootViewParams);
-
-
-        final VideoView mVideoView=(VideoView)findViewById(R.id.splashVideo);
-        mVideoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.splash));
-        mVideoView.requestFocus();
-
-        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                mVideoView.start();
-            }
-        });
+        TextureVideoView cropTextureView = (TextureVideoView) findViewById(R.id.cropTextureView);
+// Use `setScaleType` method to crop video
+        cropTextureView.setScaleType(TextureVideoView.ScaleType.TOP);
+// Use `setDataSource` method to set data source, this could be url, assets folder or path
+        cropTextureView.setDataSource("http://www.w3schools.com/html/mov_bbb.mp4");
+        cropTextureView.play();
     }
 }
