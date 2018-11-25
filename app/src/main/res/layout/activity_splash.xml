@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".SplashActivity">
 
-    <ae.ac.hct.innovationspaces.TextureVideoView
-        android:id="@+id/cropTextureView"
+    <VideoView
+        android:id="@+id/splashVideo"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </RelativeLayout>
