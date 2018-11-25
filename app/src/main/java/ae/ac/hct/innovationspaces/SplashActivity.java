@@ -23,6 +23,7 @@ public class SplashActivity extends AppCompatActivity {
         Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.splash);
         videoView.setVideoURI(uri);
         videoView.start();
+        setDimension();
     }
 
     private void setDimension() {
